@@ -144,7 +144,6 @@ export function Sidebar(): JSX.Element {
 
           <StyledListItem disablePadding>
             <ListItemButton
-              color="inherit"
               sx={{ paddingTop: 0, paddingBottom: 0, marginTop: 1 }}
             >
               <ListItemIcon sx={{ color: '#111827' }}>
@@ -162,10 +161,12 @@ export function Sidebar(): JSX.Element {
 
         <Divider />
 
-        <List>
+        <List sx={{ paddingTop: 0 }}>
           {['Docs', 'Components', 'Helps'].map((text, index) => (
             <StyledListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton
+                sx={{ paddingTop: 0, paddingBottom: 0, marginTop: 1 }}
+              >
                 <ListItemIcon sx={{ color: '#111827' }}>
                   {subListIcons[index]}
                 </ListItemIcon>

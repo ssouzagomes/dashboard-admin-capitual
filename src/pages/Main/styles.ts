@@ -15,7 +15,7 @@ export const Content = styled(Box)<ContentProps>`
   width: 100%;
   height: 100vh;
 
-  div:nth-child(2) {
+  div:nth-of-type(2) {
     padding: 13px 13px 8px 13px;
   }
 

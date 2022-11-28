@@ -1,4 +1,3 @@
-import { ListItemIcon } from '@mui/material';
 import { FaFacebookF, FaTwitter, FaGithub, FaDribbble } from 'react-icons/fa';
 
 import { ContainerBox, SocialMediasBox } from './styles';
@@ -11,21 +10,13 @@ export function Footer(): JSX.Element {
       </span>
 
       <SocialMediasBox>
-        <ListItemIcon sx={{ color: '#111827' }}>
-          <FaFacebookF size={24} />
-        </ListItemIcon>
+        <FaFacebookF size={24} color="#111827" />
 
-        <ListItemIcon sx={{ color: '#111827' }}>
-          <FaTwitter size={24} />
-        </ListItemIcon>
+        <FaTwitter size={24} color="#111827" />
 
-        <ListItemIcon sx={{ color: '#111827' }}>
-          <FaGithub size={24} />
-        </ListItemIcon>
+        <FaGithub size={24} color="#111827" />
 
-        <ListItemIcon sx={{ color: '#111827' }}>
-          <FaDribbble size={24} />
-        </ListItemIcon>
+        <FaDribbble size={24} color="#111827" />
       </SocialMediasBox>
     </ContainerBox>
   );

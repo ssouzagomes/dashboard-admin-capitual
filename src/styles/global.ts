@@ -38,7 +38,7 @@ export default createGlobalStyle`
     background: var(--gray-100);
   }
 
-  body, input, button, textarea, li, ul {
+  body, input, button, textarea, li, ul, h1, h2, h3, h4, h5, h6, span, text, p{
     font-family: 'Inter', sans-serif;
   }
 
