@@ -13,6 +13,11 @@ interface ContentProps {
 export const Content = styled(Box)<ContentProps>`
   display: flex;
   width: 100%;
+  height: 100vh;
+
+  div:nth-child(2) {
+    padding: 13px 13px 8px 13px;
+  }
 
   ${props =>
     !props.is_authenticated &&
