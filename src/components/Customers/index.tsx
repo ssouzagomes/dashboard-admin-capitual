@@ -46,7 +46,7 @@ export function Customers(): JSX.Element {
 
       <CustomersBox>
         {customers.map(customer => (
-          <CustomerItem>
+          <CustomerItem key={customer.id}>
             <UserDataBox>
               <Avatar
                 alt="Avatar User"

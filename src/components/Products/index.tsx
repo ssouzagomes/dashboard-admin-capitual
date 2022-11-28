@@ -40,7 +40,7 @@ export function Products(): JSX.Element {
 
       <ProductsBox>
         {products.map(product => (
-          <ProductItem>
+          <ProductItem key={product.id}>
             <NameDescriptionBox>
               <TypographyBody1 variant="body1">{product.name}</TypographyBody1>
 
