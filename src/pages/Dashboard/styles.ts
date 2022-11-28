@@ -7,3 +7,12 @@ export const ContainerBox = styled(Box)`
   width: 100%;
   gap: 16px;
 `;
+
+export const CustomersProductsBox = styled(Box)`
+  display: flex;
+  gap: 16px;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`;

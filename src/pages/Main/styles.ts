@@ -13,10 +13,15 @@ interface ContentProps {
 export const Content = styled(Box)<ContentProps>`
   display: flex;
   width: 100%;
-  height: 100vh;
+  flex: 1;
 
-  div:nth-of-type(2) {
+  .main-component {
+    width: 100%;
     padding: 13px 13px 8px 13px;
+  }
+
+  .sidebar {
+    height: 100%;
   }
 
   ${props =>

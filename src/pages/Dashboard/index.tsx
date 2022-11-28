@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { EarningChart } from '../../components/EarningChart';
+// import { EarningChart } from '../../components/EarningChart';
 import { Transactions } from '../../components/Transactions';
 import { Footer } from '../../components/Footer';
 import { api } from '../../services/api';
 
-import { ContainerBox } from './styles';
+import { ContainerBox, CustomersProductsBox } from './styles';
+import { Customers } from '../../components/Customers';
+import { Products } from '../../components/Products';
 
 interface ISales {
   id: string;
@@ -24,7 +26,12 @@ export function Dashboard(): JSX.Element {
 
   return (
     <ContainerBox>
-      <EarningChart sales={sales} />
+      {/* <EarningChart sales={sales} /> */}
+      <CustomersProductsBox>
+        <Customers />
+        <Products />
+      </CustomersProductsBox>
+
       <Transactions />
       <Footer />
     </ContainerBox>

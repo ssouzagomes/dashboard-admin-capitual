@@ -12,6 +12,8 @@ import {
 
 import { ContainerBox, StyledTableCell, StyledTableRow } from './styles';
 import { api } from '../../services/api';
+import { TextH2 } from '../TextH2';
+import { TextH3 } from '../TextH3';
 
 interface ITransactions {
   id: string;
@@ -43,36 +45,13 @@ export function Transactions(): JSX.Element {
 
   return (
     <ContainerBox>
-      <Typography
-        variant="h2"
-        gutterBottom
-        sx={{
-          fontFamily: 'Inter',
-          fontWeight: 600,
-          fontSize: 20,
-          color: '#111827',
-        }}
-      >
-        Transactions
-      </Typography>
+      <TextH2 text="Transactions" />
 
-      <Typography
-        variant="h3"
-        gutterBottom
-        sx={{
-          fontFamily: 'Inter',
-          fontWeight: 400,
-          fontSize: 14,
-          color: '#71717A',
-          mb: 4,
-        }}
-      >
-        This is a list of latest transactions.
-      </Typography>
+      <TextH3 text="This is a list of latest transactions." />
 
       <TableContainer
         component={Paper}
-        sx={{ boxShadow: 'none', borderRadius: 3 }}
+        sx={{ boxShadow: 'none', borderRadius: 3, mt: 4 }}
       >
         <Table
           sx={{

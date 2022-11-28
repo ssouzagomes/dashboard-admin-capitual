@@ -19,7 +19,9 @@ export function Main({ Component }: MainProps): JSX.Element {
           <Sidebar />
         </div>
 
-        <Component />
+        <div className="main-component">
+          <Component />
+        </div>
       </Content>
     </Container>
   );
