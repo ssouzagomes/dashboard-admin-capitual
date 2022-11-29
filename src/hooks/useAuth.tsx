@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import {
   createContext,
   ReactNode,
@@ -37,7 +38,6 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   }, []);
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <AuthContext.Provider value={{ signIn, isAuthenticated }}>
       {children}
     </AuthContext.Provider>

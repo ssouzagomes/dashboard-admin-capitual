@@ -1,4 +1,6 @@
-import { useCallback, useState } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   List,
@@ -20,9 +22,10 @@ import {
   HiDocumentReport,
   HiInboxIn,
   HiShoppingBag,
+  HiLockClosed,
+  HiArrowLeft,
 } from 'react-icons/hi';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
   StyledBox,
   StyledDrawer,
@@ -30,12 +33,24 @@ import {
   StyledListItemText,
 } from './styles';
 
-export function Sidebar(): JSX.Element {
+interface SidebarProps {
+  open_sidebar: boolean;
+  set_open_sidebar: (openSidebar: boolean) => void;
+}
+
+export function Sidebar({
+  open_sidebar,
+  set_open_sidebar,
+}: SidebarProps): JSX.Element {
   const subListIcons = [
     <HiClipboardList size={24} />,
     <HiCollection size={24} />,
     <HiSupport size={24} />,
   ];
+
+  const navigate = useNavigate();
+  const [openedItem, setOpenedItem] = useState('');
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   const badgeTheme = createTheme({
     palette: {
@@ -45,30 +60,82 @@ export function Sidebar(): JSX.Element {
     },
   });
 
-  const [openedItem, setOpenedItem] = useState('');
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
 
   const handleOpenPage = useCallback(
     (page: string) => {
       setOpenedItem(openedItem === page ? '' : page);
+
+      if (page === 'Overview' || page === 'Dashboard') {
+        navigate('/dashboard');
+      }
     },
-    [openedItem],
+    [openedItem, navigate],
   );
 
   return (
     <StyledBox>
-      <StyledDrawer variant="persistent" anchor="left" open>
+      <StyledDrawer
+        variant="persistent"
+        anchor="left"
+        open
+        open_sidebar={open_sidebar}
+      >
         <List sx={{ padding: 0 }}>
+          {windowSize < 768 && (
+            <>
+              <IconButton
+                edge="end"
+                color="inherit"
+                aria-label="close sidebar"
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  width: '100%',
+                  pr: 2,
+                }}
+                onClick={() => set_open_sidebar(false)}
+              >
+                <HiArrowLeft />
+              </IconButton>
+
+              <Divider />
+            </>
+          )}
+
           <StyledListItem disablePadding>
             <ListItemButton
               sx={{ paddingTop: 0, paddingBottom: 0, marginTop: 1 }}
               onClick={() => handleOpenPage('Overview')}
             >
-              <ListItemIcon sx={{ color: '#0E9F6E' }}>
+              <ListItemIcon
+                sx={{
+                  color: '#111827',
+                  ...(openedItem === 'Overview' && {
+                    color: '#0E9F6E',
+                  }),
+                }}
+              >
                 <HiChartPie size={24} />
               </ListItemIcon>
               <StyledListItemText
                 primary="Overview"
-                sx={{ color: '#0E9F6E' }}
+                sx={{
+                  color: '#111827',
+                  ...(openedItem === 'Overview' && {
+                    color: '#0E9F6E',
+                  }),
+                }}
               />
             </ListItemButton>
           </StyledListItem>
@@ -94,7 +161,10 @@ export function Sidebar(): JSX.Element {
           </StyledListItem>
           <Collapse in={openedItem === 'Pages'} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 9, pt: 0 }}>
+              <ListItemButton
+                sx={{ pl: 9, pt: 0 }}
+                onClick={() => handleOpenPage('Dashboard')}
+              >
                 <StyledListItemText primary="Dashboard" />
               </ListItemButton>
               <ListItemButton sx={{ pl: 9, pt: 0 }}>
@@ -154,6 +224,26 @@ export function Sidebar(): JSX.Element {
                 <ThemeProvider theme={badgeTheme}>
                   <Badge badgeContent={1} color="primary" />
                 </ThemeProvider>
+              </IconButton>
+            </ListItemButton>
+          </StyledListItem>
+
+          <StyledListItem disablePadding>
+            <ListItemButton
+              color="inherit"
+              sx={{ paddingTop: 0, marginTop: 1 }}
+              onClick={() => handleOpenPage('Authentication')}
+            >
+              <ListItemIcon sx={{ color: '#111827' }}>
+                <HiLockClosed size={24} />
+              </ListItemIcon>
+              <StyledListItemText primary="Authentication" />
+              <IconButton edge="end">
+                {openedItem === 'Authentication' ? (
+                  <HiChevronUp size={24} color="#111827" />
+                ) : (
+                  <HiChevronDown size={24} color="#111827" />
+                )}
               </IconButton>
             </ListItemButton>
           </StyledListItem>

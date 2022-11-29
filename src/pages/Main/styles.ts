@@ -8,17 +8,13 @@ export const Container = styled(Box)`
 
 interface ContentProps {
   is_authenticated: boolean;
+  open_sidebar: boolean;
 }
 
 export const Content = styled(Box)<ContentProps>`
   display: flex;
   width: 100%;
   flex: 1;
-
-  .main-component {
-    width: 100%;
-    padding: 13px 13px 8px 13px;
-  }
 
   .sidebar {
     height: 100%;
@@ -33,8 +29,17 @@ export const Content = styled(Box)<ContentProps>`
     `}
 
   @media (max-width: 768px) {
-    .sidebar {
-      display: none;
-    }
+    ${props =>
+      !props.open_sidebar &&
+      css`
+        .sidebar {
+          display: none;
+        }
+      `}
   }
+`;
+
+export const ComponentBox = styled(Box)`
+  width: 100%;
+  padding: 13px 13px 8px 13px;
 `;

@@ -16,7 +16,11 @@ import {
   LoginRegisterBox,
 } from './styles';
 
-export function Navbar() {
+interface NavbarProps {
+  set_open_sidebar: (openSidebar: boolean) => void;
+}
+
+export function Navbar({ set_open_sidebar }: NavbarProps) {
   const { isAuthenticated, signIn } = useAuth();
   const location = useLocation();
 
@@ -56,9 +60,16 @@ export function Navbar() {
           </NavigationBox>
         )}
 
-        <MenuIconButton edge="start" color="inherit" aria-label="open drawer">
-          <HiMenuAlt1 size={28} />
-        </MenuIconButton>
+        {isAuthenticated && (
+          <MenuIconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={() => set_open_sidebar(true)}
+          >
+            <HiMenuAlt1 size={28} />
+          </MenuIconButton>
+        )}
       </LogoMenuBox>
 
       {isAuthenticated ? (

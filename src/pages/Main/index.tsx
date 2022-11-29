@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { Navbar } from '../../components/Navbar';
 import { Sidebar } from '../../components/Sidebar';
 import { useAuth } from '../../hooks/useAuth';
-import { Container, Content } from './styles';
+import { ComponentBox, Container, Content } from './styles';
 
 interface MainProps {
   Component: React.ComponentType;
@@ -9,19 +10,26 @@ interface MainProps {
 
 export function Main({ Component }: MainProps): JSX.Element {
   const { isAuthenticated } = useAuth();
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   return (
     <Container>
-      <Navbar />
+      <Navbar set_open_sidebar={setOpenSidebar} />
 
-      <Content is_authenticated={isAuthenticated}>
+      <Content
+        is_authenticated={!!isAuthenticated}
+        open_sidebar={!!openSidebar}
+      >
         <div className="sidebar">
-          <Sidebar />
+          <Sidebar
+            open_sidebar={!!openSidebar}
+            set_open_sidebar={setOpenSidebar}
+          />
         </div>
 
-        <div className="main-component">
+        <ComponentBox>
           <Component />
-        </div>
+        </ComponentBox>
       </Content>
     </Container>
   );
