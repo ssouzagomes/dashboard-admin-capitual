@@ -19,7 +19,6 @@ interface StyledDrawerProps {
 
 export const StyledDrawer = styled(Drawer)<StyledDrawerProps>`
   display: flex;
-  width: 250;
 
   .MuiDrawer-paper {
     width: 250px;
@@ -31,6 +30,7 @@ export const StyledDrawer = styled(Drawer)<StyledDrawerProps>`
         props.open_sidebar &&
         css`
           position: fixed;
+          width: 235px;
         `}
     }
   }
@@ -47,6 +47,10 @@ export const StyledListItemText = styled(ListItemText)`
   span {
     font-weight: 500;
     font-family: 'Inter';
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
   span:nth-of-type():not(first-child()) {

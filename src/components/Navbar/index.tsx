@@ -42,22 +42,24 @@ export function Navbar({ set_open_sidebar }: NavbarProps) {
             />
           </StyledPaper>
         ) : (
-          <NavigationBox>
-            <ul>
-              <li>
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-              <li>
-                <Link to="/team">Team</Link>
-              </li>
-              <li>
-                <Link to="/projects">Projects</Link>
-              </li>
-              <li>
-                <Link to="/calendar">Calendar</Link>
-              </li>
-            </ul>
-          </NavigationBox>
+          isAuthenticated && (
+            <NavigationBox>
+              <ul>
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <Link to="/team">Team</Link>
+                </li>
+                <li>
+                  <Link to="/projects">Projects</Link>
+                </li>
+                <li>
+                  <Link to="/calendar">Calendar</Link>
+                </li>
+              </ul>
+            </NavigationBox>
+          )
         )}
 
         {isAuthenticated && (

@@ -42,12 +42,6 @@ export function Sidebar({
   open_sidebar,
   set_open_sidebar,
 }: SidebarProps): JSX.Element {
-  const subListIcons = [
-    <HiClipboardList size={24} />,
-    <HiCollection size={24} />,
-    <HiSupport size={24} />,
-  ];
-
   const navigate = useNavigate();
   const [openedItem, setOpenedItem] = useState('');
   const [windowSize, setWindowSize] = useState(window.innerWidth);
@@ -59,6 +53,12 @@ export function Sidebar({
       },
     },
   });
+
+  const subListIcons = [
+    <HiClipboardList size={windowSize < 768 ? 20 : 24} />,
+    <HiCollection size={windowSize < 768 ? 20 : 24} />,
+    <HiSupport size={windowSize < 768 ? 20 : 24} />,
+  ];
 
   useEffect(() => {
     function handleWindowResize() {
@@ -106,7 +106,7 @@ export function Sidebar({
                 }}
                 onClick={() => set_open_sidebar(false)}
               >
-                <HiArrowLeft />
+                <HiArrowLeft size={20} />
               </IconButton>
 
               <Divider />
@@ -126,7 +126,7 @@ export function Sidebar({
                   }),
                 }}
               >
-                <HiChartPie size={24} />
+                <HiChartPie size={windowSize < 768 ? 20 : 24} />
               </ListItemIcon>
               <StyledListItemText
                 primary="Overview"
@@ -147,14 +147,20 @@ export function Sidebar({
               onClick={() => handleOpenPage('Pages')}
             >
               <ListItemIcon sx={{ color: '#111827' }}>
-                <HiDocumentReport size={24} />
+                <HiDocumentReport size={windowSize < 768 ? 20 : 24} />
               </ListItemIcon>
               <StyledListItemText primary="Pages" />
               <IconButton edge="end">
                 {openedItem === 'Pages' ? (
-                  <HiChevronUp size={24} color="#111827" />
+                  <HiChevronUp
+                    size={windowSize < 768 ? 20 : 24}
+                    color="#111827"
+                  />
                 ) : (
-                  <HiChevronDown size={24} color="#111827" />
+                  <HiChevronDown
+                    size={windowSize < 768 ? 20 : 24}
+                    color="#111827"
+                  />
                 )}
               </IconButton>
             </ListItemButton>
@@ -186,14 +192,20 @@ export function Sidebar({
               onClick={() => handleOpenPage('Sales')}
             >
               <ListItemIcon sx={{ color: '#111827' }}>
-                <HiShoppingBag size={24} />
+                <HiShoppingBag size={windowSize < 768 ? 20 : 24} />
               </ListItemIcon>
               <StyledListItemText primary="Sales" />
               <IconButton edge="end">
                 {openedItem === 'Sales' ? (
-                  <HiChevronUp size={24} color="#111827" />
+                  <HiChevronUp
+                    size={windowSize < 768 ? 20 : 24}
+                    color="#111827"
+                  />
                 ) : (
-                  <HiChevronDown size={24} color="#111827" />
+                  <HiChevronDown
+                    size={windowSize < 768 ? 20 : 24}
+                    color="#111827"
+                  />
                 )}
               </IconButton>
             </ListItemButton>
@@ -217,7 +229,7 @@ export function Sidebar({
               sx={{ paddingTop: 0, paddingBottom: 0, marginTop: 1 }}
             >
               <ListItemIcon sx={{ color: '#111827' }}>
-                <HiInboxIn size={24} />
+                <HiInboxIn size={windowSize < 768 ? 20 : 24} />
               </ListItemIcon>
               <StyledListItemText primary="Messages" />
               <IconButton edge="start">
@@ -235,14 +247,20 @@ export function Sidebar({
               onClick={() => handleOpenPage('Authentication')}
             >
               <ListItemIcon sx={{ color: '#111827' }}>
-                <HiLockClosed size={24} />
+                <HiLockClosed size={windowSize < 768 ? 20 : 24} />
               </ListItemIcon>
               <StyledListItemText primary="Authentication" />
               <IconButton edge="end">
                 {openedItem === 'Authentication' ? (
-                  <HiChevronUp size={24} color="#111827" />
+                  <HiChevronUp
+                    size={windowSize < 768 ? 20 : 24}
+                    color="#111827"
+                  />
                 ) : (
-                  <HiChevronDown size={24} color="#111827" />
+                  <HiChevronDown
+                    size={windowSize < 768 ? 20 : 24}
+                    color="#111827"
+                  />
                 )}
               </IconButton>
             </ListItemButton>
